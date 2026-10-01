@@ -1,0 +1,4 @@
+data/
+.DS_Store
+README_files/*
+README.html

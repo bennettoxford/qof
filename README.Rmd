@@ -1,0 +1,83 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(tidyverse)
+library(arrow)
+library(here)
+
+qof_datasets <- c("prevalence", "geography") |>
+  set_names() |>
+  map(\(dataset) read_parquet(here("data", paste0(dataset, ".parquet"))))
+```
+
+# Public Quality and Outcomes Framework (QOF) data
+
+This repository prepares public Quality and Outcomes Framework (QOF) data for analysis.
+The data comes from the NHS England: [Quality and Outcomes Framework achievement, prevalence and exceptions data](https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data).
+
+## Data
+
+```{r data, echo = FALSE}
+qof_datasets |>
+  imap_dfr(
+    \(data, name) {
+      data |>
+        summarise(
+          dataset = str_to_sentence(name),
+          start_date = min(start_date),
+          end_date = max(end_date),
+          rows = n(),
+          file = str_c("`", name, ".parquet`")
+        )
+    }
+  ) |>
+  mutate(rows = format(rows, big.mark = ",")) |>
+  knitr::kable(
+    col.names = c("Dataset", "Start date", "End date", "Rows", "File"),
+    align = c("l", "l", "l", "r", "l")
+  )
+```
+
+## Reading the data
+
+The latest prevalence data can be read directly with Arrow:
+
+```r
+qof_prevalence <- arrow::read_parquet(
+  "https://github.com/bennettoxford/qof/releases/latest/download/prevalence.parquet"
+)
+```
+
+
+## Updating the data
+
+`qof-raw-data.yml` records the download URL and archive filenames for each release.
+It also maps raw data column names, which are inconsistent across the reporting periods, to consistent names.
+`get-data.R` reads this config file and writes the combined prevalence and geography data as Parquet files in `data/`.
+
+## Publishing the tidy data as GitHub Release
+
+1. Update the data and review the generated Parquet files.
+1. Merge the update into the default branch and pull the latest changes locally.
+1. Create and publish the release from the terminal with [gh](https://cli.github.com/):
+
+```bash
+gh release create 2024-25-v1 \
+  data/prevalence.parquet \
+  data/geography.parquet \
+  --title "2024-25-v1" \
+  --notes "QOF data for financial years 2013-14 to 2024-25."
+```
+
+## Licence
+
+The source data is available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). Contains information from NHS England, licenced under the current version of the Open Government Licence.
