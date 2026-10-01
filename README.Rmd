@@ -22,9 +22,9 @@ qof_datasets <- c("prevalence", "geography") |>
 # Public Quality and Outcomes Framework (QOF) data
 
 This repository prepares public Quality and Outcomes Framework (QOF) data for analysis.
-The data comes from the NHS England: [Quality and Outcomes Framework achievement, prevalence and exceptions data](https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data).
+The data comes from the NHS England: [Quality and Outcomes Framework achievement, prevalence and exceptions](https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data) data.
 
-## Data
+## Available data
 
 ```{r data, echo = FALSE}
 qof_datasets |>
@@ -35,21 +35,37 @@ qof_datasets |>
           dataset = str_to_sentence(name),
           start_date = min(start_date),
           end_date = max(end_date),
-          rows = n(),
-          file = str_c("`", name, ".parquet`")
+          rows = n()
         )
     }
   ) |>
   mutate(rows = format(rows, big.mark = ",")) |>
   knitr::kable(
-    col.names = c("Dataset", "Start date", "End date", "Rows", "File"),
-    align = c("l", "l", "l", "r", "l")
+    col.names = c("Dataset", "Start date", "End date", "Rows"),
+    align = c("l", "l", "l", "r")
+  )
+```
+
+## Practices and list size
+
+```{r practices, echo = FALSE}
+qof_datasets$prevalence |>
+  group_by(year, practice_code) |>
+  slice_max(practice_list_size, n = 1, with_ties = FALSE) |>
+  group_by(year) |>
+  summarise(
+    practices = n(),
+    practice_list_size = sum(practice_list_size, na.rm = TRUE)
+  ) |>
+  arrange(desc(year)) |>
+  knitr::kable(
+    col.names = c("Financial year", "Practices", "Practice list size"),
+    align = c("l", "r", "r"),
+    format.args = list(big.mark = ",", scientific = FALSE)
   )
 ```
 
 ## Reading the data
-
-You can run the `get-data.R` script yourself or read the newest release from GitHub:
 
 ```r
 qof_prevalence <- arrow::read_parquet(
@@ -57,27 +73,27 @@ qof_prevalence <- arrow::read_parquet(
 )
 ```
 
-
 ## Updating the data
 
 `qof-raw-data.yml` records the download URL and archive filenames for each release.
 It also maps raw data column names, which are inconsistent across the reporting periods, to consistent names.
 `get-data.R` reads this config file and writes the combined prevalence and geography data as Parquet files in `data/`.
 
-## Publishing the tidy data as GitHub Release
+## Publishing the tidy data
 
 1. Update the data and review the generated Parquet files.
 1. Merge the update into the default branch and pull the latest changes locally.
 1. Create and publish the release from the terminal with [gh](https://cli.github.com/):
 
 ```bash
-gh release create 2025-26-v1 \
+gh release create YYYY-YY-v1 \
   data/prevalence.parquet \
   data/geography.parquet \
-  --title "2025-26-v1" \
-  --notes "QOF data for financial years 2013-14 to 2025-26."
+  --title "YYYY-YY-v1" \
+  --notes "QOF data for financial years 2013-14 to YYYY-YY."
 ```
 
 ## Licence
 
+The code is licensed under the [MIT License](LICENSE.md).
 The source data is available under the [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). Contains information from NHS England, licenced under the current version of the Open Government Licence.
