@@ -16,12 +16,7 @@ data.
 | Prevalence | 2013-04-01 | 2026-03-31 | 1,907,791 |
 | Geography  | 2013-04-01 | 2026-03-31 |    89,423 |
 
-### Practices and list size
-
-The source data repeats practice list sizes across indicator groups and
-includes smaller denominators for age-specific groups. This table counts
-each practice once and uses its largest reported list size in each
-financial year. Missing list sizes are excluded from the total.
+## Practices and list size
 
 | Financial year | Practices | Practice list size |
 |:---------------|----------:|-------------------:|
@@ -41,9 +36,6 @@ financial year. Missing list sizes are excluded from the total.
 
 ## Reading the data
 
-You can run the `get-data.R` script yourself or read the newest release
-from GitHub:
-
 ``` r
 qof_prevalence <- arrow::read_parquet(
   "https://github.com/bennettoxford/qof/releases/latest/download/prevalence.parquet"
@@ -58,7 +50,7 @@ across the reporting periods, to consistent names. `get-data.R` reads
 this config file and writes the combined prevalence and geography data
 as Parquet files in `data/`.
 
-## Publishing the tidy data as GitHub Release
+## Publishing the tidy data
 
 1.  Update the data and review the generated Parquet files.
 2.  Merge the update into the default branch and pull the latest changes
@@ -67,16 +59,17 @@ as Parquet files in `data/`.
     [gh](https://cli.github.com/):
 
 ``` bash
-gh release create 2025-26-v1 \
+gh release create YYYY-YY-v1 \
   data/prevalence.parquet \
   data/geography.parquet \
-  --title "2025-26-v1" \
-  --notes "QOF data for financial years 2013-14 to 2025-26."
+  --title "YYYY-YY-v1" \
+  --notes "QOF data for financial years 2013-14 to YYYY-YY."
 ```
 
 ## Licence
 
-The source data is available under the [Open Government
+The code is licensed under the [MIT License](LICENSE.md). The source
+data is available under the [Open Government
 Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 Contains information from NHS England, licenced under the current
 version of the Open Government Licence.
