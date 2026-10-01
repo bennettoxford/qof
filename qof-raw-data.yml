@@ -33,6 +33,11 @@ datasets:
         - regionname
 
 releases:
+  - year: "2025-26"
+    url: "https://files.digital.nhs.uk/05/37C52B/QOF_2526_v2.zip"
+    files:
+      prevalence: "PREVALENCE_2526.csv"
+      geography: "MAPPING_NHS_GEOGRAPHIES_2526.csv"
   - year: "2024-25"
     url: "https://files.digital.nhs.uk/95/4708D7/QOF2425.zip"
     files:
