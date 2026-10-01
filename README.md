@@ -12,8 +12,8 @@ data](https://digital.nhs.uk/data-and-information/publications/statistical/quali
 
 | Dataset    | Start date | End date   |      Rows | File                 |
 |:-----------|:-----------|:-----------|----------:|:---------------------|
-| Prevalence | 2013-04-01 | 2025-03-31 | 1,772,601 | `prevalence.parquet` |
-| Geography  | 2013-04-01 | 2025-03-31 |    83,278 | `geography.parquet`  |
+| Prevalence | 2013-04-01 | 2026-03-31 | 1,907,791 | `prevalence.parquet` |
+| Geography  | 2013-04-01 | 2026-03-31 |    89,423 | `geography.parquet`  |
 
 ## Reading the data
 
@@ -38,19 +38,16 @@ as Parquet files in `data/`.
 1.  Update the data and review the generated Parquet files.
 2.  Merge the update into the default branch and pull the latest changes
     locally.
-3.  Create and publish the release from the terminal:
+3.  Create and publish the release from the terminal with
+    [gh](https://cli.github.com/):
 
 ``` bash
-gh release create 2024-25-v1 \
+gh release create 2025-26-v1 \
   data/prevalence.parquet \
   data/geography.parquet \
-  --title "2024-25-v1" \
-  --notes "QOF data for financial years 2013-14 to 2024-25."
+  --title "2025-26-v1" \
+  --notes "QOF data for financial years 2013-14 to 2025-26."
 ```
-
-Use `v1` for the first release covering a financial year. Increment the
-revision for corrections, for example `2024-25-v2`. Start again at `v1`
-when adding the next financial year, for example `2025-26-v1`.
 
 ## Licence
 
