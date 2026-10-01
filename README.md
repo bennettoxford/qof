@@ -5,19 +5,44 @@
 
 This repository prepares public Quality and Outcomes Framework (QOF)
 data for analysis. The data comes from the NHS England: [Quality and
-Outcomes Framework achievement, prevalence and exceptions
-data](https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data).
+Outcomes Framework achievement, prevalence and
+exceptions](https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data)
+data.
 
-## Data
+## Available data
 
-| Dataset    | Start date | End date   |      Rows | File                 |
-|:-----------|:-----------|:-----------|----------:|:---------------------|
-| Prevalence | 2013-04-01 | 2026-03-31 | 1,907,791 | `prevalence.parquet` |
-| Geography  | 2013-04-01 | 2026-03-31 |    89,423 | `geography.parquet`  |
+| Dataset    | Start date | End date   |      Rows |
+|:-----------|:-----------|:-----------|----------:|
+| Prevalence | 2013-04-01 | 2026-03-31 | 1,907,791 |
+| Geography  | 2013-04-01 | 2026-03-31 |    89,423 |
+
+### Practices and list size
+
+The source data repeats practice list sizes across indicator groups and
+includes smaller denominators for age-specific groups. This table counts
+each practice once and uses its largest reported list size in each
+financial year. Missing list sizes are excluded from the total.
+
+| Financial year | Practices | Practice list size |
+|:---------------|----------:|-------------------:|
+| 2025-26        |     6,145 |         63,674,427 |
+| 2024-25        |     6,188 |         63,766,671 |
+| 2023-24        |     6,267 |         63,213,403 |
+| 2022-23        |     6,378 |         62,378,057 |
+| 2021-22        |     6,470 |         61,604,213 |
+| 2020-21        |     6,571 |         60,716,244 |
+| 2019-20        |     6,720 |         60,407,685 |
+| 2018-19        |     6,873 |         59,386,096 |
+| 2017-18        |     7,100 |         58,383,266 |
+| 2016-17        |     7,392 |         58,029,147 |
+| 2015-16        |     7,619 |         57,549,410 |
+| 2014-15        |     7,779 |         56,817,654 |
+| 2013-14        |     7,921 |         56,324,887 |
 
 ## Reading the data
 
-The latest prevalence data can be read directly with Arrow:
+You can run the `get-data.R` script yourself or read the newest release
+from GitHub:
 
 ``` r
 qof_prevalence <- arrow::read_parquet(
