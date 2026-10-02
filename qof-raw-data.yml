@@ -1,4 +1,16 @@
 datasets:
+  achievement:
+    columns:
+      practice_code:
+        - practice_code
+        - practicecode
+      indicator_code:
+        - indicator_code
+        - indicatorcode
+      measure:
+        - measure
+      value:
+        - value
   prevalence:
     columns:
       practice_code:
@@ -16,6 +28,8 @@ datasets:
         - practice_list_size
         - practice_listsize
         - patient_list_size
+      patient_list_type:
+        - patient_list_type
   geography:
     columns:
       practice_code:
@@ -36,65 +50,106 @@ releases:
   - year: "2025-26"
     url: "https://files.digital.nhs.uk/05/37C52B/QOF_2526_v2.zip"
     files:
+      achievement:
+        - "ACHIEVEMENT_EAST_OF_ENGLAND_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_LONDON_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_MIDLANDS_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_NORTH_EAST_AND_YORKSHIRE_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_NORTH_WEST_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_SOUTH_EAST_COMMISSIONING_REGION_2526_v2.csv"
+        - "ACHIEVEMENT_SOUTH_WEST_COMMISSIONING_REGION_2526_v2.csv"
       prevalence: "PREVALENCE_2526.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2526.csv"
   - year: "2024-25"
     url: "https://files.digital.nhs.uk/95/4708D7/QOF2425.zip"
     files:
+      achievement:
+        - "ACHIEVEMENT_EAST_OF_ENGLAND_2425.csv"
+        - "ACHIEVEMENT_LONDON_2425.csv"
+        - "ACHIEVEMENT_MIDLANDS_2425.csv"
+        - "ACHIEVEMENT_NORTH_EAST_AND_YORKSHIRE_2425.csv"
+        - "ACHIEVEMENT_NORTH_WEST_2425.csv"
+        - "ACHIEVEMENT_SOUTH_EAST_2425.csv"
+        - "ACHIEVEMENT_SOUTH_WEST_2425.csv"
       prevalence: "PREVALENCE_2425.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2425.csv"
   - year: "2023-24"
     url: "https://files.digital.nhs.uk/DA/975A29/QOF2324.zip"
     files:
+      achievement:
+        - "ACHIEVEMENT_EAST_OF_ENGLAND_2324.csv"
+        - "ACHIEVEMENT_LONDON_2324.csv"
+        - "ACHIEVEMENT_MIDLANDS_2324.csv"
+        - "ACHIEVEMENT_NORTH_EAST_AND_YORKSHIRE_2324.csv"
+        - "ACHIEVEMENT_NORTH_WEST_2324.csv"
+        - "ACHIEVEMENT_SOUTH_EAST_2324.csv"
+        - "ACHIEVEMENT_SOUTH_WEST_2324.csv"
       prevalence: "PREVALENCE_2324.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2324.csv"
   - year: "2022-23"
     url: "https://files.digital.nhs.uk/32/40B931/QOF%202022-23%20Raw%20data%20.csv%20files.zip"
     files:
+      achievement:
+        - "ACHIEVEMENT_EAST_OF_ENGLAND_2223.csv"
+        - "ACHIEVEMENT_LONDON_2223.csv"
+        - "ACHIEVEMENT_MIDLANDS_2223.csv"
+        - "ACHIEVEMENT_NORTH_EAST_AND_YORKSHIRE_2223.csv"
+        - "ACHIEVEMENT_NORTH_WEST_2223.csv"
+        - "ACHIEVEMENT_SOUTH_EAST_2223.csv"
+        - "ACHIEVEMENT_SOUTH_WEST_2223.csv"
       prevalence: "PREVALENCE_2223.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2223.csv"
   - year: "2021-22"
     url: "https://files.digital.nhs.uk/90/6F833F/QOF_2122_V2.zip"
     files:
+      achievement: "ACHIEVEMENT_2122.csv"
       prevalence: "PREVALENCE_2122_V2.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2122.csv"
   - year: "2020-21"
     url: "https://files.digital.nhs.uk/AC/3C964F/QOF2021_v2.zip"
     files:
+      achievement: "ACHIEVEMENT_2021_v2.csv"
       prevalence: "PREVALENCE_2021_v2.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_2021.csv"
   - year: "2019-20"
     url: "https://files.digital.nhs.uk/E2/BF16AA/QOF_1920.zip"
     files:
+      achievement: "ACHIEVEMENT_1920.csv"
       prevalence: "PREVALENCE_1920.csv"
       geography: "MAPPING_NHS_GEOGRAPHIES_1920.csv"
   - year: "2018-19"
     url: "https://files.digital.nhs.uk/A8/491BAC/QOF_1819_v2.zip"
     files:
+      achievement: "ACHIEVEMENT_1819.csv"
       prevalence: "PREVALENCE_1819_v2.csv"
       geography: "ORGANISATION_REFERENCE_1819_v2.csv"
   - year: "2017-18"
     url: "https://files.digital.nhs.uk/72/CB2869/qof-1718-csv.zip"
     files:
+      achievement: "ACHIEVEMENT.csv"
       prevalence: "PREVALENCE.csv"
       geography: "ORGANISATION_REFERENCE.csv"
   - year: "2016-17"
     url: "https://files.digital.nhs.uk/zip/p/i/qof-1617-csv.zip"
     files:
+      achievement: "ACHIEVEMENT.csv"
       prevalence: "PREVALENCE.csv"
       geography: "ORGANISATION_REFERENCE.csv"
   - year: "2015-16"
     url: "https://files.digital.nhs.uk/publicationimport/pub22xxx/pub22266/qof-1516-csv.zip"
     files:
+      achievement: "ACHIEVEMENT_EXCEPTIONS.csv"
       prevalence: "PREVALENCE.csv"
       geography: "ORGANISATION_REFERENCE.csv"
   - year: "2014-15"
     url: "https://files.digital.nhs.uk/publicationimport/pub18xxx/pub18887/qof-1415-csvfiles-v2.zip"
     files:
+      achievement: "INDICATORS_BY_PRAC.csv"
       prevalence: "PREVALENCE_BY_PRAC_v2.csv"
       geography: "PRAC_CONTROL.csv"
   - year: "2013-14"
     url: "https://files.digital.nhs.uk/publicationimport/pub15xxx/pub15751/qof-1314-csvfilescqrsdata.zip"
     files:
+      achievement: "IndicatorsbyPrac.csv"
       prevalence: "prevalencebyprac.csv"
       geography: "Prac_Control.csv"
