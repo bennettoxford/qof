@@ -2,3 +2,5 @@ data/
 .DS_Store
 README_files/*
 README.html
+raw-data/
+DEVELOPERS_files/*
