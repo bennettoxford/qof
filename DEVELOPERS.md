@@ -22,3 +22,9 @@ gh release create YYYY-YY-v1 \
   --title "YYYY-YY-v1" \
   --notes "QOF data for financial years 2013-14 to YYYY-YY."
 ```
+### Release versions
+
+Each release contains all three datasets, so the `releases/latest/download` links in the README always work.
+The tag version, for example `v2` in `2025-26-v2`, counts our releases, not NHS England's file versions.
+Create a new version when any dataset changes, and include the unchanged files again.
+Keep older releases so their links still work.
